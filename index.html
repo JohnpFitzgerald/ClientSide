@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<!-- John Fitzgerald 
+ r00156081-->
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="css/loginstyle.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+<title>Login - Assignment1</title>
+</head>
+<body>
+<div class="container">
+  <header>Login to Rock,Paper, Scissors!</header>
+	<form>
+	  <div class="input-field">
+		<input type="text" id="username" required>
+
+		<label>Username</label>
+	  </div>
+	  <div class="button" id="access">
+		<div class="inner">
+		</div>
+		<button>LOGIN</button>
+	  </div>
+	</form>
+	 <div class="signup" id="addName">
+		Not a member? <a href="#">Signup now</a>
+	 </div>
+</div>
+
+<script>
+//onclick of signup now link we want to manage the new windows 
+document.getElementById("addName").addEventListener("click", function(){
+	window.open("newUser.html")
+	window.close("index.html");
+});
+//get the data from the server
+$(document).ready(function(){
+	$.getJSON("http://localhost:3000/posts", function(data){
+		//console.log(data);
+		//on click of login - i want to check data for the user name 
+		//if it is a valid user I want to open the 'game' page
+		// if name not in JSON ask user to sign up
+		document.getElementById("access").addEventListener("click", function(){
+		var enteredName = document.getElementById('username').value;			
+		if (enteredName != ''){         	    
+			for(var i = 0; i < data.length; i++) {
+				if(enteredName == data[i].uname) {
+				   localStorage.setItem("txtValue", enteredName);                     
+				   window.open("game.html") 
+				   window.close();						  
+				}						
+			}
+			 alert ("Enter a valid username or sign in below for a game")				
+		}	
+		});		
+	}).fail(function(){
+		console.log("An error has occurred.");
+		alert("There is a problem accessing the db.json - are you running npm server?")
+	});
+});
+</script>
+</body>
+</html>

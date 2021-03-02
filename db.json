@@ -1,0 +1,24 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "uname": "john Fitzgerald"
+    },
+    {
+      "id": 2,
+      "uname": "r00156081"
+    },
+    {
+      "id": 3,
+      "uname": "jing"
+    },
+    {
+      "id": 4,
+      "uname": "terry"
+    },
+    {
+      "id": 5,
+      "uname": "terry"
+    }
+  ]
+}
